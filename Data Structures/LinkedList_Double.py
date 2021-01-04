@@ -6,7 +6,6 @@ Created on Mon Dec 28
 @author: emartie7
 """
 
-
 #Class for a Node to form a doubly linked list
 class Node():
     def __init__(self,initVal):
@@ -127,14 +126,14 @@ class myLinkedList_Double():
             return print("\nRequested index is out of range\n")
                        
             
-testList = myLinkedList_Double(1)
-testList.append(2)
-testList.append(3)
-testList.prepend(4)
-testList.append(5)
-testList.prepend(6)
-testList.Insert(7, 3)
-testList.Remove(7)
-testList.PrintList()
-print("\nList in reverse is: \n")
-testList.PrintListReverse()     
+# testList = myLinkedList_Double(1)
+# testList.append(2)
+# testList.append(3)
+# testList.prepend(4)
+# testList.append(5)
+# testList.prepend(6)
+# testList.Insert(7, 3)
+# testList.Remove(7)
+# testList.PrintList()
+# print("\nList in reverse is: \n")
+# testList.PrintListReverse()     

@@ -12,6 +12,6 @@ def ReverseStr (StringIn, StringInLen):
         
     return ''.join(StringOut)
 
-myString = 'Some string that will be reversed'
-newString = ReverseStr(myString, len(myString)-1)
-print('Old String: {}; New String: {}'.format(myString,newString))
+# myString = 'Some string that will be reversed'
+# newString = ReverseStr(myString, len(myString)-1)
+# print('Old String: {}; New String: {}'.format(myString,newString))

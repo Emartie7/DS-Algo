@@ -52,11 +52,11 @@ class myHashTableDef():
                     Success.append(subentry[0])
         return Success
     
-testTable = myHashTableDef(15)
-testTable.set("Apple", 500)
-testTable.set("Banana", 211)
-testTable.set("Orange", 13)
-testTable.set("Pineapple",1300)
+# testTable = myHashTableDef(15)
+# testTable.set("Apple", 500)
+# testTable.set("Banana", 211)
+# testTable.set("Orange", 13)
+# testTable.set("Pineapple",1300)
 # print(testTable.keys())
 
 ######################################################
@@ -91,7 +91,7 @@ def returnFirstRecurring2(ArrayIn):
         # print(myDict)
     return None
 
-print(returnFirstRecurring([2,5,5,2,3,5,1,2,4]))
-print(returnFirstRecurring2([2,1,1,2,3,5,1,2,4]))
-print(returnFirstRecurring2([2,3,4,5]))
+# print(returnFirstRecurring([2,5,5,2,3,5,1,2,4]))
+# print(returnFirstRecurring2([2,1,1,2,3,5,1,2,4]))
+# print(returnFirstRecurring2([2,3,4,5]))
     

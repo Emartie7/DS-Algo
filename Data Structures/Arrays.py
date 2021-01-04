@@ -27,5 +27,5 @@ def mergeSortedArrays(ArrayIn1, ArrayIn2):
     
     return mergedArray
 
-newArray = mergeSortedArrays([0,3,4,31], [])    #Test using different arguments here
-print(newArray)
+# newArray = mergeSortedArrays([0,3,4,31], [])    #Test using different arguments here
+# print(newArray)
