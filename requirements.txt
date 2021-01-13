@@ -1,0 +1,2 @@
+certifi==2020.12.5
+-e git+https://github.com/Emartie7/DS-Algo.git@4b038e3053c651a88791a3ca4a20b19d602a1770#egg=DSdefs
