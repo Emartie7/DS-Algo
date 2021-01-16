@@ -110,6 +110,26 @@ class LinkedList_Single_Def():
                 self.tail = LeaderRef
         else:
             return print("\nRequested index is out of range\n")
+    #############################################################################
+    #### def reverse(self)
+    ####    Reverses the linked list, making the current head the new tail and
+    ####    current tail the new head. This method will traverse the list starting
+    ####    at the head. The current node is "N" and this routine will save a reference
+    ####    to the next node (N+1), link the current Node "N" to the node at "N-1",
+    ####    update the references for current and previous node for the next iteration.
+    #############################################################################
+    def reverse(self):
+        CurrItem = self.head            #Start at the head which will be the new tail
+        PrevNode = None
+        while CurrItem is not None:
+            NextNode = CurrItem.next    #N+1
+            CurrItem.next = PrevNode    #Tell CurrItem to point to node at N-1
+
+            PrevNode = CurrItem         #"current" node will be previous node in the next iteration
+            CurrItem = NextNode         #"next" node will be the current next in the next iteration
+            if CurrItem is None:        #If we are at the "old" tail, this is the new head. While loop will break on next iteration
+                self.head = PrevNode
+
 #############################################################################
 #### class LinkedList_Double_Def
 ####    Implements a doubly linked list utilizinng the "Node" class defined
