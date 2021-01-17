@@ -13,7 +13,7 @@ Created on Fri Nov 27 19:41:14 2020
 ####    setting a value. Links must be defined externally.
 #############################################################################
 class Node():
-    def __init__(self,initVal):
+    def __init__(self,initVal=None):
         self.value  = None
         self.next   = None
         self.prev   = None
@@ -28,10 +28,10 @@ class Node():
 ####    the list at the instance of object creation.
 #############################################################################
 class LinkedList_Single_Def():
-    def __init__(self,InitVal):
+    def __init__(self,InitVal=None):
         self.list = []
-        self.head = Node
-        self.tail = Node
+        self.head = Node()
+        self.tail = Node()
         self.writeIdx = 0
 
         if InitVal is not None:
@@ -48,6 +48,10 @@ class LinkedList_Single_Def():
             self.tail.next = NewNode
             self.tail = NewNode                   #update tail
             self.writeIdx += 1
+            
+        if self.head.value is None:           # If we lose track of head or are initialized w/o one
+            self.head = NewNode
+            
 
     def prepend(self,NewVal):
         if NewVal is not None:
@@ -68,16 +72,20 @@ class LinkedList_Single_Def():
                     NodeIdx += 1
                     CurrItem = CurrItem.next
 
-    def PrintList(self):
+    def ReturnList(self,PrintList=0):
+        ListValOut  = []
         CurrItem    = self.head
         ItemCt      = 0
         while CurrItem is not None:
-            print(CurrItem.value)
+            if PrintList == 1:
+                print(CurrItem.value)
+            ListValOut.append(CurrItem.value)
             CurrItem = CurrItem.next
             if(ItemCt > self.writeIdx):
                 break
             else:
                 ItemCt += 1
+        return ListValOut
 
     def Insert(self,NewVal,Idx):
         if NewVal is not None:
