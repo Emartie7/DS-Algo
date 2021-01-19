@@ -25,7 +25,7 @@ class Node():
 #### class LinkedList_Single_Def
 ####    Implements a singly linked list utilizinng the "Node" class defined
 ####    above. Initialization routine allows a single value to be added to
-####    the list at the instance of object creation.
+####    the list at the instance of object creation. List is a zero-based index
 #############################################################################
 class LinkedList_Single_Def():
     def __init__(self,InitVal=None):
@@ -60,6 +60,9 @@ class LinkedList_Single_Def():
             self.list.append(NewNode)        #New item must point to previous head
             self.head = NewNode
             self.writeIdx += 1
+            
+            if self.tail.value is None:           # If we are initialized w/o a value
+                self.tail = NewNode
 
     def traverseToIdx(self,Idx):
         if Idx is not None:
@@ -90,7 +93,7 @@ class LinkedList_Single_Def():
     def Insert(self,NewVal,Idx):
         if NewVal is not None:
 
-            if(Idx == 0):
+            if(Idx == 0) or (self.writeIdx == 0):
                 self.prepend(NewVal)
             elif Idx >= self.writeIdx:
                 self.append(NewVal)
