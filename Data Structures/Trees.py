@@ -62,7 +62,7 @@ class BinarySearchTree():
         NextNode = self.root
         test = 0
         while(CurrNode is not None):
-            print("Current Node value is: {}".format(CurrNode.value))
+            # print("Current Node value is: {}".format(CurrNode.value))
             if(CurrNode.value == LookupVal):
                 print("Found node with value: {}".format(LookupVal))
                 return CurrNode
@@ -83,41 +83,48 @@ class BinarySearchTree():
             print("Warning: Value {} not found.".format(LookupVal))
         return CurrNode
     
+    def findMinimum(self,subRoot):
+        CurrNode = subRoot
+        NextNode = subRoot.left
+        while(NextNode is not None):
+            CurrNode = NextNode
+            NextNode = CurrNode.left
+        print("Minimum tree value is: {}".format(CurrNode.value))
+        return CurrNode
+    
     def remove(self,RemoveValue):
         RemoveNode = self.lookup(RemoveValue)
         if RemoveNode is not None:
             #Remove if node was found
             ParentRef = RemoveNode.parent
-            if RemoveNode.right is not None:                #Remove node to be replaced by left branch
-                if RemoveNode == ParentRef.left:            #Removed value < Parent value
-                    #Update parent left branch pointers
-                    ParentRef.left = RemoveNode.right
-                    RemoveNode.parent = None
-                    UpdateNode = ParentRef.left             #UpdateNode is the non-null Node that now holds the "place" of the removed node
-                else:                                       #Removed Value > Parent value
-                    #Update parent right branch pointers
-                    ParentRef.right = RemoveNode.right
-                    RemoveNode.parent = None
-                    UpdateNode = ParentRef.right
-                if RemoveNode.left is not None:             #Update Right node parent if it exists (left and right node exist)
-                    UpdateNode.left = RemoveNode.left
-                    RemoveNode.left.parent = UpdateNode
-
-            elif(RemoveNode.left is not None):             #Remove Node to be replaced by right branch
-                if RemoveNode == ParentRef.left:
-                    #Update parent left branch pointers
-                    ParentRef.left = RemoveNode.left    #Update parent left branch pointers
-                    RemoveNode.parent = None
-                else:
-                    #Update parent right branch pointers
-                    ParentRef.right = RemoveNode.left
-                    RemoveNode.parent = None
-            else:
-                #No children on remove node
+            if ((RemoveNode.left is None) and (RemoveNode.right is None)):              #No children
                 if RemoveNode == ParentRef.left:
                     ParentRef.left = None
                 else:
                     ParentRef.right = None
+            elif((RemoveNode.left is not None) and (RemoveNode.right is not None)):     #Two Children
+                MinNode = self.findMinimum(RemoveNode)
+                if RemoveNode == ParentRef.left:
+                    ParentRef.left = MinNode        #Minimum value takes the place of the removed value
+                else:
+                    ParentRef.right = MinNode
+                MinNode.left = RemoveNode.left
+                MinNode.right = RemoveNode.right
+                MinParent = MinNode.parent      #Get a reference to the parent of the minimum value
+                MinNode.parent = ParentRef      #Update the parent of the minimum node (now in the place of the removed node)
+                MinParent.left = None           #Former parent of minimum value loses its left  child 
+            else:
+                if RemoveNode.left is not None:             #Removed node has left child
+                    if RemoveNode == ParentRef.left:
+                        ParentRef.left = RemoveNode.left
+                    else:
+                        ParentRef.right = RemoveNode.left
+                else:                                       #Removed node has right child
+                    if RemoveNode == ParentRef.left:
+                        ParentRef.left = RemoveNode.right 
+                    else:
+                        ParentRef.right = RemoveNode.right
+            return RemoveNode              
         else:
             return None
 
@@ -130,8 +137,8 @@ myTree.insert(1)
 myTree.insert(6)
 myTree.insert(15)
 myTree.insert(170)
-myTree.lookup(15)
-myTree.lookup(6)
-myTree.remove(4)
-RetrievedNode = myTree.lookup(1)
-print("Found node with value: {}, left child: {}, right child: {}, and parent {}".format(RetrievedNode.value,RetrievedNode.left,RetrievedNode.right,RetrievedNode.parent.value))
+myTree.insert(13)
+myTree.insert(19)
+myTree.remove(20)
+# myTree.findMinimum(myTree.root)
+# print("Found node with value: {}, left child: {}, right child: {}, and parent {}".format(RetrievedNode.value,RetrievedNode.left,RetrievedNode.right,RetrievedNode.parent.value))
