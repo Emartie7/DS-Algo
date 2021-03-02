@@ -29,14 +29,12 @@ class Node():
 #############################################################################
 class LinkedList_Single_Def():
     def __init__(self,InitVal=None):
-        self.list = []
         self.head = Node()
         self.tail = Node()
         self.writeIdx = 0
 
         if InitVal is not None:
             NewNode = Node(InitVal)
-            self.list.append(NewNode)
             self.head = NewNode
             self.tail = NewNode
             self.writeIdx = 1
@@ -44,7 +42,6 @@ class LinkedList_Single_Def():
     def append(self,NewVal):
         if NewVal is not None:
             NewNode = Node(NewVal)
-            self.list.append(NewNode)              #New item is the tail
             self.tail.next = NewNode
             self.tail = NewNode                   #update tail
             self.writeIdx += 1
@@ -57,7 +54,6 @@ class LinkedList_Single_Def():
         if NewVal is not None:
             NewNode         = Node(NewVal)
             NewNode.next    = self.head
-            self.list.append(NewNode)        #New item must point to previous head
             self.head = NewNode
             self.writeIdx += 1
             
@@ -103,7 +99,6 @@ class LinkedList_Single_Def():
                 FollowRef = LeaderRef.next              #Node currently at position N
 
                 NewNode.next = FollowRef
-                self.list.append(NewNode)
                 LeaderRef.next = NewNode
                 self.writeIdx +=1
 
@@ -149,14 +144,12 @@ class LinkedList_Single_Def():
 #############################################################################
 class LinkedList_Double_Def():
     def __init__(self,InitVal):
-        self.list = []
         self.head = Node
         self.tail = Node
         self.writeIdx = 0
 
         if InitVal is not None:
             NewNode = Node(InitVal)
-            self.list.append(NewNode)
             self.head = NewNode
             self.tail = NewNode
             self.writeIdx = 1
@@ -165,7 +158,6 @@ class LinkedList_Double_Def():
         if NewVal is not None:
             NewNode = Node(NewVal)
             NewNode.prev = self.tail
-            self.list.append(NewNode)              #New item is the tail
             self.tail.next = NewNode
             self.tail = NewNode                   #update tail
             self.writeIdx += 1
@@ -174,7 +166,6 @@ class LinkedList_Double_Def():
         if NewVal is not None:
             NewNode         = Node(NewVal)
             NewNode.next    = self.head
-            self.list.append(NewNode)        #New item must point to previous head
             self.head.prev = NewNode
             self.head = NewNode
             self.writeIdx += 1
@@ -227,7 +218,6 @@ class LinkedList_Double_Def():
                 NewNode.next = FollowRef
                 NewNode.prev = LeaderRef
 
-                self.list.append(NewNode)
                 LeaderRef.next = NewNode
                 FollowRef.prev = NewNode
                 self.writeIdx +=1
