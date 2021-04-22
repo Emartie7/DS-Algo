@@ -51,12 +51,14 @@ def SelectionSort(ListIn):
 #############################################################################
 def InsertionSort(ListIn):
     ListLen = len(ListIn)
+    MinVal = ListIn[0]
     for i in range(0,ListLen):
-        if ListIn[i] < ListIn[0]:       #Case 1 - New minimum value, prepend
+        if ListIn[i] <= MinVal:       #Case 1 - New minimum value, prepend
             a = ListIn.pop(i)
-            ListIn.insert(0,a)
+            MinVal = a
+            ListIn.insert(0,MinVal)
         else:
-            for ii in range(1,ListLen):     #Case 2 - Figure out where the heck this goes
+            for ii in range(0,i):     #Case 2 - Figure out where the heck this goes
                 if ListIn[i] < ListIn[ii]:
                     a = ListIn.pop(i)
                     ListIn.insert(ii,a)
